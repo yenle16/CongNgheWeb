@@ -1,0 +1,214 @@
+CÁCH THỨC PHÂN LOẠI CÁC LOẠI MẠNG MÁY TÍNH
+1.Căn cứ theo phạm vi địa lý: LAN, MAN, WAN, GAN, INTERNE
+2.Căn cứ theo kiến trúc hệ thống mạng:
+	Dựa vào đồ hình(Topology) : mạng hình sao, mạng tuyến tính bus, token ring
+	Dựa vào giao thức(protocol): mạng TCP/IP
+3.Căn cứ vào cách thức chuyển dữ liệu:
+	-mạng chuyển mạch kém(mạch điện)
+	-mạng chuyển mạch thông báo
+	-Mạng chuyển mạch gói
+4.Căn cứ vào hệ điều hành: Windows, ubuntu, UMX, linux,..
+
+III. CÁC KHÁI NIỆM
+1. GIAO THỨC TCP/IP
+	-TCP/IP hoạt động ở tầng 4 (có kết nối dùng TCP (6), không kết nối dùng UDP(17))
+	-IP,ICMP  -->Tầng 3
+	-ARP,RARP -->Tầng 2
+2.Lập trình viên làm việc trên 3 tầng(ứng dụng, giao vận, tiếp cận mạng)
+	-Mô hình 3 lớp(MCV)
+		+Quản lý giao diện (VIEW)  (chạy ở máy trạm: client)
+		+Module xử lý(CONTROLLER) (client và server )
+		+Quản lý dữ liệu(MODEL) (server)
+3.Giao thức TCP/IP
+	-Giao thức IP (không có kết nối) có 2 chức năng: Chuyển tiếp, chọn đường
+		Giao thức ARP: là giao thức xác định địa chỉ vật lý từ địa chỉ IP
+		Giao thức RARP: là giao thức xác định địa chỉ IP từ địa chỉ vật lý
+	-Cấu trúc gói tin IP: 2 phần (Header và Data)
+		Khi lập trình mạng: DÙng TCP thêm vào header 20byte, 
+					Dùng UDP thêm vào header 8byte,
+		Yêu cầu đáp ứng nhanh, không cần bảo mật dùng UDP
+		Cần độ bảo mật dùng TCP
+		-ICMP là giao thức đưa ra để đưa ra thông báo lỗi trong quá trình trao đổi gói tin	
+	-Địa chỉ IP: 2 phần (NetID: trung tâm NIC, HostID:trung tâm internet quốc gia..phần được gõ)
+
+		1 => 126:        địa chỉ lớp A.  0.0.0.0 -->127.0.0.0
+		128 => 191:    địa chỉ lớp B.    128.0.0.0-->191.255.0.0
+		192 => 223:    địa chỉ lớp C.    192.0.0.0-->224.255.255.0
+	  	-NetID=IP address AND subnetmask
+		Trong đó subnetmask (để che phần NetID)
+		-Lớp A : 255.0.0.0
+		-Lớp B: 255.255.0.0
+		-Lớp C: 255.255.255.0
+	-Các máy cùng mạng sẽ có cùng NetID, subnetmask và khác hostID
+	-Hai máy khác mạng hoặc khác NetID hoặc khác subnet mask
+	-Địa chỉ broadcast là địa chỉ mạng sẽ dùng để quảng bá mạng mình cho các mạng khác biết
+IV. Các dịch vụ của Internet
+	a.Dịch vụ thư điện tử (Email): SMTP, PoPs/IMAP
+	-Mô hình thông điệp trực tiếp: Các thông điệp được gửi trực tiếp ngay lập tức tới máy đang hoạt động trong mạng nội bộ
+	-Mô hình hộp thư lưu: Thông điệp được gửi gián tiếp tới một máy phục vụ đang hoạt động trong mạng nội bộ
+	-Các thành phần cơ bản: Mail server,Mail Client, cách thức giao nhận thư
+	b.World Wide Web (www)
+	c.Chat
+	d.FTP: truyền các tập tin từ máy tính này đến máy khacs trong mạng 
+	e.Dịch vụ Telnet: giao thức RealVNC.com, TightVNC.com
+		Đăng nhập vào máy tính chủ từ xa thông qua một máy khác trên mangj, điều khiển, truy xuất máy tính từ xa
+	f. Dịch vụ khác: Gopher, Dịch vụ WAIS, Mailing list
+
+V.Kiến trúc cơ bản của Web (www): vở
+	1.Giao thức HTTP: 4 giai đoạn
+	-Tạo kết nối
+	-Thực hiện yêu cầu: gửi và nhận thông tin theo phương thức POST, GET
+	-Phản hồi
+	-Kết thúc kết nối: kết thúc quá trình trao đổi giữa Web Browser và Web server thì kết nối chấm dứt (Sau khi xuất ra html thì hết kết nối)
+
+	2.Mô hình xử lý Client/server:
+	Một mô hình xử lý Client/Server phải có 3 thành phần cơ bản :
+		Front-end
+		 ClientBack-end
+		 ServerMạng máy tính (Network)
+	4 mô hình xử lý phổ biến:
+	-Mô hình trình bày từ xa: code chương trình ở server, data trên server, tất cả công việc nằm ở server.
+		 Client chỉ tiếp nhận và biểu diễn nội dung yêu cầu
+	-Mô hình xử lý phân tán: phân tán chức năng xử lý nhưng dữ liệu tập trung
+	-Mô hinh quản lý dữ liệu từ xa: 
+	-Mô hình quản lý dữ liệu phân tán: 
+
+
+-------------------------------------------------JavaScript---------------------------------------------
+Phép toán số học : +, -, *, /, %, ++,....
+Phép toán so sánh: ==, !=, <, <=, >, >=,... kết quả trả về true/false
+Quan hệ trên bit: 
+&(AND), |(NOT), ^(XOR), ~(NOT), <<(dịch trái),  >> (dịch phải)
+Quan hệ logic:
+&&(AND), ||(OR), !(NOT)  --> true/false
+
+--------------------------------------------PHP----------------------------------------------------------
+-3 kiểu comment #  //  /*..*/
+-array: kiểu array là mảng gồm nhiều phần tử array được tạo qua lệnh array
+mảng còn thể được tạo thành bởi các cặp khóa, giá trị
+<?php> $a=array(
+''khóa 1"=>"giá trị 1",
+''khóa 2"=>"giá trị 2");
+echo $a["khóa 1"];//in ra: giá trị 1
+
+-đặt tên biến không được bắt đầu bằng số và dấu gạch dưới
+-nối chuỗi: .
+	$a="xin chao" , $b="cac ban";
+	$a=$a . "tat ca";
+	echo $a . $b;//xin chao tat ca cac ban
+-phép so sánh
+	$a==$b   //a=b;
+	$a===$b  //a bằng b và cùng kiểu với b
+	$a!=$b hoặc $a<>$b  //a khác b
+-phép error :  @
+	$a=10;
+	$b=0;
+	$c=@($a/$b); // kiểm tra nếu $c lỗi thì pass không làm gì cả 
+-câu lệnh foreach: chỉ làm việc với mảng array
+	foreach($array as $value) câu lệnh;
+	foreach($array as $key =>$value)  câu lệnh; 
+
+	$a=array('a' =>'1', 'b'=>'2', c=>'3');
+	----in ra 1,2,3
+	foreach($a as value)
+	{
+	echo $value,"\n";}
+	//end foreach
+	----in ra a=1, b=2, c=3
+	foreach($a $key => $value)
+	{
+	echo $key,"=",$value,"\n";}
+	//end foreach
+
+-hàm function
+	function TenHam($thamso1, thamso2)
+-------------------------------------------------
+Các bước cơ bản để truy xuất CSDL MySQL bằng PHP:
+1.Thực hiện kết nối đến cơ sở dữ liệu
+2.Lựa chọn CSDL
+3.Thực hiên truy vấn
+4.Xử lí dữ liệu 
+5.Đóng kết nối
+**Bài tập áp dụng 
+-Tạo CSDL: DULIEU
+-Tạo bảng: nhanvien(IDNV:khóa chính, Hoten, IDPB:khoa ngoại, Diachi)
+	     phongban(IDPB:khóa chính, Tenpb,Mota)
+	    Admin(Id,username,password)
+-Yêu cầu: viết các trang php
+	+xemthongtinNV.php: cho phép truy xuất thông tin bảng nhanvien 		
+	+xemthongtinPB.php: cho phép truy xuất bảng phongban và liệt kê tất cả các nhân viên theo từng phòng ban. (liên kết đến xemthongtinNVPB.php?  IDPB='PB01' , 'PB02' , 'PB03'
+
+	+timkiem.php: cho phép tìm kiếm theo các tiêu chí khác nhau của bảng nhanvien
+-Khi đăng nhập hệ thống ta có thể:
+	+Chèn thông tin bảng nhanvien, phong ban
+	+Cập nhật thông tin bảng phongban
+	+Xóa, xóa tất cả thông tin bảng nhanvien
+-Mô tả luồng hoạt động của chức năng cập nhật thông tin bảng phongban
+	+login.php-->xulilogin.php-->capnhat.php-->form_capnhat.php-->xulicapnhat-->gọi lại capnhat.php 
+	(tất cả đều kết nối CSDL)
+
+
+---------------------------------Mô hình MVC-----------------------------
+*Quan hệ trong mô hình MVC
+	Controler phụ thuộc vào Model, Model quyết định controller
+	View phụ thuộc vào Model, Controller quyết định View
+
+*Tạo CSDL: DULIEU
++Tạo bảng:sinhvien(id,name,age,university)
++Viết ứng dụng "Quản lý thông tin sinh viên" theo mô hình MVC gồm các chức năng:
+	-Xem thông rin
+	-Chèn thêm sinh viên
+	-Cập nhật thông tin sinh viên
+	-Tìm kiếm thông tin
+	-Xóa sinh viên bất kì
+*Mô tả chức năng "Xem thông tin sinh viên" theo mô hình MVC
+	-Tạo thư mục
+MVC_EXAMPLE
+	-Controller -->  C_Student.php
+	-Model-->	 E_Student.php
+			M_Student.php
+	-View  ---> 	Studentlist.htm
+			StudentDetail.htm --->stid='...'
+	-index.php
+
+-------------------------------------------------------------------------------
+*Tạo Dynamic web project
+-JSPSample
+	+src
+	+WebContent {-login.jsp
+			-checkLogin.jsp
+			-welcome.jsp
+			}
+**Login.jsp
+	user|_____| gọi đến checkLogin.jsp
+			Nhận user,pass
+			address="192NLB"
+			Ktra(user,pass)
+ 	Ktra(user,pass) sai thì gọi đến Login.jsp
+			đúng thì gọi đến welcome.jsp
+			
+	welcome.jsp :
+		Xin chào: user 
+		Địa chỉ: 192 NLB
+		Temp: Temp
+
+
+------------------------------------------JSP--------------------------
+-3 cách comment: //   /*..*/    < % -- ..... -- % >
+-Nhúng file vào trang :  <%@ include file %>
+			<%@ include file="URL or FIlepath" %>
+-Phân biệt giữa Session và Cookie
+	+Session: theo dõi kết nối và lưu vết một phiên làm việc giữa trình khách và trình chủ
+	+Cookie
+	
+------------------------------------------------------------------------------
++Hoàn thiện các trang: login.jsp,  checkLogin.jsp,   welcome.jsp
+có kết nối CSDL MySQL
++Tạo project theo MVC như sau:
+MVCSample ---->|src----->|controller ------------>ChecckLoginServlet.java
+		   |	     |model---------->bo---->CheckLoginBO.java
+		   |			dao---->CheckLoginDAO.java (xem thông tin)
+		   |			bean--->Wife.java
+		   |WebContent
+			|login.jsp
+			|welcome.jsp
